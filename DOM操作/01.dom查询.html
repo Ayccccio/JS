@@ -56,17 +56,124 @@
 			</div>
 		</div>
 		<div id="btnList">
-			<div><button id="btn01">查找#bj节点</button></div>
-			<div><button id="btn02">查找所有li节点</button></div>
-			<div><button id="btn03">查找name=gender的所有节点</button></div>
-			<div><button id="btn04">查找#city下所有li节点</button></div>
-			<div><button id="btn05">返回#city的所有子节点</button></div>
-			<div><button id="btn06">返回#phone的第一个子节点</button></div>
-			<div><button id="btn07">返回#bj的父节点</button></div>
-			<div><button id="btn08">返回#android的前一个兄弟节点</button></div>
-			<div><button id="btn09">返回#username的value属性值</button></div>
-			<div><button id="btn10">设置#username的value属性值</button></div>
-			<div><button id="btn11">返回#bj的文本值</button></div>
+			<div><button id="btn01">1.查找#bj节点</button></div>
+			<div><button id="btn02">2.查找所有li节点</button></div>
+			<div><button id="btn03">3.查找name=gender的所有节点</button></div>
+			<div><button id="btn04">4.查找#city下所有li节点</button></div>
+			<div><button id="btn05">5.返回#city的所有子节点</button></div>
+			<div><button id="btn06">6.返回#phone的第一个子节点</button></div>
+			<div><button id="btn07">7.返回#bj的父节点</button></div>
+			<div><button id="btn08">8.返回#android的前一个兄弟节点</button></div>
+			<div><button id="btn09">9.返回#username的value属性值</button></div>
+			<div><button id="btn10">10.设置#username的value属性值</button></div>
+			<div><button id="btn11">11.返回#bj的文本值</button></div>
 		</div>
 	</body>
+	<script>
+
+		// 封装根据元素ID绑定点击事件方法
+		function elClickEvent(id, fun){
+			var el = document.getElementById(id);
+			el.onclick = fun;
+		}
+		// 1.查找#bj节点
+		elClickEvent('btn01',function(){
+			// 通过id获取元素
+			var bj = document.getElementById("bj");
+			console.log(bj.innerText);
+		});
+
+		// 2.查找所有li节点
+		elClickEvent('btn02', function(){
+			// 通过标签名获取元素
+			var lis = document.getElementsByTagName('li');
+			for(var i of lis){
+				console.log(i);
+			}
+		});
+
+		// 3.查找name=gender的所有节点
+		elClickEvent('btn03', function(){
+			// 通过元素属性name的值获取元素
+			var genders = document.getElementsByName('gender');
+			for(var i of genders){
+				console.log(i);
+			}
+		});
+		
+		// 4.查找#city下所有li节点
+		elClickEvent("btn04",function(){
+			// 通过id名city获取元素
+			var city = document.getElementById("city");
+			// 从city元素下通过标签名获取其他li元素
+			cityLi = city.getElementsByTagName("li");
+			// 遍历city下的所有li元素
+			for (const i of cityLi) {
+				console.log(i);
+			}
+		});
+
+		// 5.返回#city的所有子节点
+		elClickEvent("btn05",function(){
+			// 获取id为city的元素
+			var elCity = document.getElementById("city");
+			// 遍历元素city下的所有子节点
+			// elCity.childNodes 获取所有子节点包含换行及空格
+			// elCity.children 获取所有子元素节点，不包含换行及空格
+			for (const i of elCity.childNodes) {
+				console.log(i);
+			}
+		});
+
+		// 6.返回#phone的第一个子节点
+		elClickEvent("btn06",function(){
+			// 获取id为phone的元素
+			var elPhone = document.getElementById("phone");
+			// 打印elPhone下的第一个子节点
+			// elPhone.firstChild 获取第一个子节点，包含换行及空格
+			// elPhone.firstElementChild 获取第一个子节点，不包含换行及空格
+			console.log(elPhone.firstChild);
+		});
+
+		// 7.返回#bj的父节点
+		elClickEvent("btn07",function(){
+			// 获取id为bj的元素
+			var elBj = document.getElementById("bj");
+			// elBj.parentElement 获取父元素,html的父节点获取不到
+			// elBj.parentNode	获取父节点，能获取到html的父节点document
+			console.log(elBj.parentNode);
+		});
+
+		// 8.返回#android的前一个兄弟节点
+		elClickEvent("btn08",function(){
+			// 获取id为android的元素
+			var elAndroid = document.getElementById("android");
+			// elAndroid.previousElementSibling	获取前一个元素
+			// elAndroid.previousSibling 获取前一个节点
+			console.log(elAndroid.previousSibling);
+		});
+
+		// 9.返回#username的value属性值
+		elClickEvent("btn09",function(){
+			// 获取id为username的元素
+			var elUserName = document.getElementById("username");
+			// 打印elUsername的值
+			console.log(elUserName.value);
+		});
+
+		// 10.设置#username的value属性值
+		elClickEvent("btn10",function(){
+			// 获取id为username的元素
+			var elUsername = document.getElementById("username");
+			// 设置elUsername的值为123456
+			elUsername.value = "123456";
+		});
+
+		// 11.返回#bj的文本值
+		elClickEvent("btn11",function(){
+			var elBj = document.getElementById("bj");
+			console.log(elBj.innerText);
+		});
+
+	</script>
 </html>
