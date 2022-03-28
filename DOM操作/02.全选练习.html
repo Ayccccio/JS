@@ -6,22 +6,122 @@
 	<title>全选练习</title>
 </head>
 
-<body>
+	<body>
 
-	<form method="post" action="">
-		你爱好的运动是？<input type="checkbox" id="checkedAllBox" />全选/全不选
+		<form method="post" action="">
+			你爱好的运动是？<input type="checkbox" id="checkedAllBox" />全选/全不选
 
-		<br />
-		<input type="checkbox" name="items" value="足球" />足球
-		<input type="checkbox" name="items" value="篮球" />篮球
-		<input type="checkbox" name="items" value="羽毛球" />羽毛球
-		<input type="checkbox" name="items" value="乒乓球" />乒乓球
-		<br />
-		<input type="button" id="checkedAllBtn" value="全　选" />
-		<input type="button" id="checkedNoBtn" value="全不选" />
-		<input type="button" id="checkedRevBtn" value="反　选" />
-		<input type="button" id="sendBtn" value="提　交" />
-	</form>
-</body>
+			<br />
+			<input type="checkbox" name="items" value="足球" />足球
+			<input type="checkbox" name="items" value="篮球" />篮球
+			<input type="checkbox" name="items" value="羽毛球" />羽毛球
+			<input type="checkbox" name="items" value="乒乓球" />乒乓球
+			<br />
+			<input type="button" id="checkedAllBtn" value="全　选" />
+			<input type="button" id="checkedNoBtn" value="全不选" />
+			<input type="button" id="checkedRevBtn" value="反　选" />
+			<input type="button" id="sendBtn" value="提　交" />
+		</form>
+	</body>
+	<script>
+		var elInCheckItems = document.getElementsByName("items");
+		var elInCheckAll = document.getElementById("checkedAllBox");
+		var elInBtnAll = document.getElementById("checkedAllBtn");
+		var elInBtnNo = document.getElementById("checkedNoBtn");
+		var elInBtnRev = document.getElementById("checkedRevBtn");
+		var elInBtnCmt = document.getElementById("sendBtn");
+		var count = 0;
 
+		// items全部选中
+		function checked(){
+			for (const i of elInCheckItems) {
+				i.checked = true;
+			}
+			count = elInCheckItems.length;
+		}
+
+		// items全部取消选中
+		function unchecked(){
+			for (const i of elInCheckItems) {
+				i.checked = false;
+			}
+			count = 0;
+		}
+
+		// items点击事件
+		for (const i of elInCheckItems) {
+			i.onclick = function(){
+				if(i.checked){
+					count++;
+				}else{
+					count--;
+				}
+
+				// 判断checkedAllBox是否需要选中
+				if(count == elInCheckItems.length){
+					elInCheckAll.checked = true;
+				}else{
+					elInCheckAll.checked = false;
+				}
+			}
+		}
+
+		// checkedAllBox选中事件
+		elInCheckAll.onclick = function(){
+			// 全选/全不选 选择框选中时，items所有checked值改为true，计数赋值为items长度表示这么多个数被选中
+			if(this.checked){
+				checked();
+			}else{
+			// 全选/全不选 选择框不选中时，items所有checked值改为false,计数重置为0，表示items全部取消选中
+				unchecked();	
+			}
+		}
+
+		// 全选按钮点击事件
+		elInBtnAll.onclick = function(){
+			// 调用items全选函数
+			checked();
+			// checkedAllBox设为选中
+			elInCheckAll.checked = true;
+		}
+
+		// 全不选按钮点击事件
+		elInBtnNo.onclick = function(){
+			// 调用items全部取消选中函数
+			unchecked();
+			// checkedAllBox设为不选中
+			elInCheckAll.checked = false;
+		}
+
+		// 反选按钮点击事件
+		elInBtnRev.onclick = function(){
+			// 遍历items
+			for (const i of elInCheckItems) {
+				// 如果选中，设为不选中，计数减一
+				if(i.checked){
+					i.checked = false;
+					count--;
+				}else{
+				// 如果不选中，设为选中，计数加一
+					i.checked = true;
+					count++;
+				}
+
+			}
+			// 判断是否全部选中，设置全选/全不选 选择框
+			if(count == elInCheckItems.length){
+				elInCheckAll.checked = true;
+			}else{
+				elInCheckAll.checked = false;
+			}
+		}
+
+		elInBtnCmt.onclick = function(){
+			for (const i of elInCheckItems) {
+				if(i.checked){
+					console.log(i.value);
+				}
+			}
+		}
+		</script>
 </html>
