@@ -94,7 +94,7 @@
 
 		// 添加新员工
 		// 获取员工表格元素节点
-		var elTb = document.getElementById("employeeTable");
+		var elTb = document.getElementById("employeeTable").children[0];
 		// 获取输入框元素节点
 		var elInputs = document.querySelectorAll(".inp input")
 
@@ -110,7 +110,7 @@
 			
 			// 将elTr追加到员工表中
 			elTb.appendChild(elTrNew);
-			
+
 			// 获取新添加行的删除按钮，并绑定点击事件
 			elTrNew.getElementsByTagName("a")[0].onclick = delTr;
 
