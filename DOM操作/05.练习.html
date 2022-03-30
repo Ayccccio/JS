@@ -1,75 +1,117 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>添加删除记录练习</title>
-	<link rel="stylesheet" type="text/css" href="ex_2_style/css.css" />
-</head>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>添加删除记录练习</title>
+		<link rel="stylesheet" type="text/css" href="ex_2_style/css.css" />
+	</head>
 
-<body>
+	<body>
 
-	<table id="employeeTable">
-		<tr>
-			<th>Name</th>
-			<th>Email</th>
-			<th>Salary</th>
-			<th>&nbsp;</th>
-		</tr>
-		<tr>
-			<td>Tom</td>
-			<td>tom@tom.com</td>
-			<td>5000</td>
-			<td><a href="javascript:;">Delete</a></td>
-		</tr>
-		<tr>
-			<td>Jerry</td>
-			<td>jerry@sohu.com</td>
-			<td>8000</td>
-			<td><a href="deleteEmp?id=002">Delete</a></td>
-		</tr>
-		<tr>
-			<td>Bob</td>
-			<td>bob@tom.com</td>
-			<td>10000</td>
-			<td><a href="deleteEmp?id=003">Delete</a></td>
-		</tr>
-	</table>
-
-	<div id="formDiv">
-
-		<h4>添加新员工</h4>
-
-		<table>
+		<table id="employeeTable">
 			<tr>
-				<td class="word">name: </td>
-				<td class="inp">
-					<input type="text" name="empName" id="empName" />
-				</td>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Salary</th>
+				<th>&nbsp;</th>
 			</tr>
 			<tr>
-				<td class="word">email: </td>
-				<td class="inp">
-					<input type="text" name="email" id="email" />
-				</td>
+				<td>Tom</td>
+				<td>tom@tom.com</td>
+				<td>5000</td>
+				<td><a href="javascript:;">Delete</a></td>
 			</tr>
 			<tr>
-				<td class="word">salary: </td>
-				<td class="inp">
-					<input type="text" name="salary" id="salary" />
-				</td>
+				<td>Jerry</td>
+				<td>jerry@sohu.com</td>
+				<td>8000</td>
+				<td><a href="deleteEmp?id=002">Delete</a></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
-					<button id="addEmpButton" value="abc">
-						Submit
-					</button>
-				</td>
+				<td>Bob</td>
+				<td>bob@tom.com</td>
+				<td>10000</td>
+				<td><a href="deleteEmp?id=003">Delete</a></td>
 			</tr>
 		</table>
 
-	</div>
+		<div id="formDiv">
 
-</body>
+			<h4>添加新员工</h4>
 
+			<table>
+				<tr>
+					<td class="word">name: </td>
+					<td class="inp">
+						<input type="text" name="empName" id="empName" />
+					</td>
+				</tr>
+				<tr>
+					<td class="word">email: </td>
+					<td class="inp">
+						<input type="text" name="email" id="email" />
+					</td>
+				</tr>
+				<tr>
+					<td class="word">salary: </td>
+					<td class="inp">
+						<input type="text" name="salary" id="salary" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button id="addEmpButton" value="abc">
+							Submit
+						</button>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+
+	</body>
+	<script>
+
+		// 删除事件
+		function delTr(){
+			// 获取delete当前行，删除
+			var elTr = this.parentNode.parentNode;
+			elTr.parentNode.removeChild(elTr);
+
+			// 阻止a标签默认事件跳转
+			return false;
+		}
+		// 点击delete删除表格内当前行
+		// 获取delete元素节点
+		var elADles = document.querySelectorAll("#employeeTable a");
+		// 遍历所有删除标签
+		for (const i of elADles) {
+			i.onclick = delTr;
+		}
+
+		// 添加新员工
+		// 获取员工表格元素节点
+		var elTb = document.getElementById("employeeTable");
+		// 获取输入框元素节点
+		var elInputs = document.querySelectorAll(".inp input")
+
+		// 获取提交按钮，并绑定点击事件
+		document.getElementById("addEmpButton").onclick = function(){
+			// 创建一个tr标签元素
+			var elTrNew = document.createElement("tr");
+			// 遍历输入框，将输入框内容添加到elTr元素中
+			for (const i of elInputs) {
+				elTrNew.innerHTML = elTrNew.innerHTML + "<td>" + i.value + "</td>";
+			}
+			elTrNew.innerHTML += '<td><a href=javascript:;>Delete</a></td>';
+			
+			// 将elTr追加到员工表中
+			elTb.appendChild(elTrNew);
+
+			// 获取新添加行的删除按钮，并绑定点击事件
+			elTrNew.getElementsByTagName("a")[0].onclick = delTr;
+
+		}
+	</script>
 </html>
