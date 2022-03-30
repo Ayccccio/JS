@@ -75,9 +75,11 @@
 
 		// 删除事件
 		function delTr(){
-			// 获取delete当前行，删除
-			var elTr = this.parentNode.parentNode;
-			elTr.parentNode.removeChild(elTr);
+			if(confirm("是否删除?")){
+				// 获取delete当前行，删除
+				var elTr = this.parentNode.parentNode;
+				elTr.parentNode.removeChild(elTr);
+			}
 
 			// 阻止a标签默认事件跳转
 			return false;
