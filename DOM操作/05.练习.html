@@ -75,9 +75,9 @@
 
 		// 删除事件
 		function delTr(){
-			if(confirm("是否删除?")){
+			var elTr = this.parentNode.parentNode;
+			if(confirm("是否删除" + elTr.firstElementChild.innerHTML + "?")){
 				// 获取delete当前行，删除
-				var elTr = this.parentNode.parentNode;
 				elTr.parentNode.removeChild(elTr);
 			}
 
@@ -110,7 +110,7 @@
 			
 			// 将elTr追加到员工表中
 			elTb.appendChild(elTrNew);
-
+			
 			// 获取新添加行的删除按钮，并绑定点击事件
 			elTrNew.getElementsByTagName("a")[0].onclick = delTr;
 
