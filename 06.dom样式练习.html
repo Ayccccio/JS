@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hint span{
+            width: auto;
+            background-color: aqua;
+        }
+        #box1{
+           width: 100px; 
+           height: 100px;
+           background-color: skyblue;
+           margin: 50px auto;
+        }
+        #box2,#box3{
+           width: 20px; 
+           height: 30px;
+           background-color: skyblue;
+           margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+    <p>点击一个元素将此元素的宽高背景色复制给另一个元素</p>
+    <p class="hint"><span>请选择源元素</span>点击重置</p>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="box3"></div>
+</body>
+<script>
+    var elDivs = document.getElementsByTagName("div");
+    var elSpan = document.querySelector(".hint span");
+    var state = 1;  //1:取样式 2：赋予样式
+    var el = {
+        width:"",
+        height:"",
+        backgorundColor:""
+    };
+
+    // 兼容性获取元素样式
+    function getStyle(el, attr){
+        return window.getComputedStyle ? window.getComputedStyle(el)[attr] : el.currentStyle(attr);
+    }
+    // div点击事件
+    for (const iterator of elDivs) {
+        iterator.onclick = function(event){
+            // 判断是取样式还是赋予样式
+            if(state == 1){
+                state = 2;
+                el.width = getStyle(iterator, "width");
+                el.height = getStyle(iterator, "height");
+                el.backgroundColor = getStyle(iterator, "backgroundColor");
+                elSpan.innerHTML = "请选择目标元素";
+                console.log(el);
+            }else if(state == 2){
+                this.style.width = el.width;
+                this.style.height = el.height;
+                this.style.backgroundColor = el.backgroundColor;
+            }
+        }
+        
+    }
+
+    // 重置样式
+    elSpan.onclick = function(){
+        state = 1;
+        this.innerHTML = "请选择源元素";
+
+        // 重置赋予的样式
+        for (const iterator of elDivs) {
+            iterator.style = "";
+        }
+    }
+
+</script>
+</html>
