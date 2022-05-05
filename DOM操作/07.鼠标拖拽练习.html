@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            transition: all .2s;
+            top: 100px;
+            left: 100px;
+        }
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: rgb(34, 106, 165);
+            position: absolute;
+            transition: all .2s;
+            top: 200px;
+            left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <span class="box">div</span>
+    <div class="box"></div>
+    <div class="box1 box"></div>
+</body>
+<script>
+    // 获取样式兼容函数
+    function getStyle(el, style){
+        return window.getComputedStyle ? window.getComputedStyle(el)[style] : el.currentStyle[style];
+    }
+
+    // 事件绑定兼容函数
+    function eventBind (obj, event, callBack){
+        if(obj.addEventListener){
+            obj.addEventListener(event, callBack);
+        }else{
+            obj.attachEvent('on' + event, function(e){
+                callBack.call(obj,e);
+            }) //attachEvent回调中的this指向的是window,这里将this指向修改为obj
+        }
+        return false;
+    }
+
+    
+    // 给document对象添加鼠标按下事件，实现目标对象拖拽功能
+    // 不直接给目标对象添加事件是为了，用className直接控制对象拥有该功能
+    eventBind(document, 'mousedown', function(e){
+        // 判断目标对象类名
+        var el = e.target || e.srcElement;
+        if(el.className.split(' ').indexOf("box")  != -1){
+            // 获取鼠标在目标元素中的位置
+            var left = e.clientX - el.offsetLeft;
+            var top = e.clientY - el.offsetTop;
+
+            // 元素放大
+            el.style.transform = 'scale(1.2)';
+            el.style.position = 'absolute';
+
+            el.setCapture && el.setCapture();  //捕获所有元素的鼠标按下事件重定向到el鼠标按下事件,只有ie有该方法，考虑兼容性写法。
+            
+            // 鼠标移动
+            document.onmousemove =  function(e){
+                e = event || window.event;
+                el.style.left = e.clientX - left + 'px';
+                el.style.top = e.clientY - top + 'px';
+
+                
+               return false;   //阻止其他对象鼠标移动默认事件，触发当前对象鼠标移动事件时不执行其他对象鼠标移动事件。ie无效
+            }
+
+            // 鼠标松开
+            document.onmouseup =  function(){
+                el.style.transform = '';
+                document.onmousemove = null;
+                el.releaseCapture && el.releaseCapture();    //释放捕获鼠标按下事件，只有ie有该方法，考虑兼容性写法。。
+            }
+        }
+    });
+
+</script>
+</html>
