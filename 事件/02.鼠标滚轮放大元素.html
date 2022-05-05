@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: burlywood;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+    var elDiv = document.getElementsByTagName('div')[0];
+
+    elDiv.onmousewheel = function(e){
+        if(e.wheelDelta > 0 || e.detail < 0){  //ie,chrome浏览器是wheelDelta ,火狐是detail,这里是兼容写法
+            this.style.height = this.clientHeight - 10 + 'px';
+        }else{
+            this.style.height = this.clientHeight + 10 + 'px';
+        }
+    }
+    // 火狐的滚轮事件为DOMMouseScroll还必需要addEventListener事件绑定添加
+    elDiv.addEventListener('DOMMouseScroll', elDiv.onmousewheel, false);
+</script>
+</html>
