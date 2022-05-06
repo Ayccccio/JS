@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 获取浏览器信息，判断是什么浏览器
+    function getBrowserName(){
+        var browserName;
+        if(/chrome/i.test(navigator.userAgent)){
+            browserName = 'google';
+        }else if(/firefox/i.test(navigator.userAgent)){
+            browserName = 'firefox';
+        }else if(/msie/i.test(navigator.userAgent)){
+            browserName = 'IE';
+        }else if('ActiveXObject' in window){
+            browserName = 'IE11';
+        }
+        return browserName;
+    }
+    document.body.innerHTML = '这是' + getBrowserName() + '浏览器';
+</script>
+</html>
