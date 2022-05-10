@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.clearfix::after,
+.clearfix::before {
+  content: '';
+  display: table;
+  clear: both;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.banner-box {
+  margin: 50px auto;
+  width: 800px;
+  border: 1px solid red;
+  position: relative;
+}
+.banner-box .banner {
+  width: 4000px;
+}
+.banner-box .banner li {
+  width: 800px;
+  height: 417px;
+  float: left;
+  overflow: hidden;
+}
+.banner-box .banner li a {
+  display: block;
+}
+.banner-box .banner li a img {
+  width: 100%;
+}
+.banner-box .dot {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+.banner-box .dot li {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 2px #fff;
+  margin-right: 10px;
+}
+.banner-box .dot li:last-child {
+  margin-right: 0;
+}
+.banner-box .dot li:hover {
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+.banner-box .dot li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.banner-box .dot .sel {
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+.banner-box .btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.banner-box .btn a {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+.banner-box .btn a i {
+  font-size: 38px;
+}
+.banner-box .btn:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.banner-box .btn.btn-l {
+  left: 30px;
+}
+.banner-box .btn.btn-r {
+  right: 30px;
+}
