@@ -28,6 +28,7 @@ a {
   margin: 50px auto;
   width: 800px;
   border: 1px solid red;
+  overflow: hidden;
   position: relative;
 }
 .banner-box .banner {

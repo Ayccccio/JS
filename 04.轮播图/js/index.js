@@ -73,7 +73,6 @@ function toggleClass(el, className){
 function motion(el, styleJson, callBack, time = 1000, timeout = 10, tween = 'Linear'){
     // 清除Interval,防止重复执行
     clearInterval(el.timer);
-    console.log(el.timer);
     
     var startJ = {},    //元素样式开始值
         endJ = {},      //元素样式结束值
@@ -85,14 +84,14 @@ function motion(el, styleJson, callBack, time = 1000, timeout = 10, tween = 'Lin
     for (const key in styleJson) {
         startJ[key] = parseFloat(getStyle(el, key));
         endJ[key] = styleJson[key];
-        changeJ[key] = startJ[key] - endJ[key];
+        changeJ[key] = endJ[key] - startJ[key];
     }
+
     // 定时器开始元素变化
     el.timer = setInterval(function(){
         index++;
         // 拉终停表
         if(index >= count){
-            console.log(startJ,endJ,changeJ);
             // 将样式值设置为最终值，避免因步长原因导致最后值差一点
             for (const key in endJ) {
                 // 判断是否是opacity
@@ -102,16 +101,18 @@ function motion(el, styleJson, callBack, time = 1000, timeout = 10, tween = 'Lin
                 }
                 el.style[key] = endJ[key] + 'px';
             }
+
+            // 运动结束执行回调
             callBack && callBack.call(el);
+
             clearInterval(el.timer);
             return;
         }
 
         // 开始运动
         for (const key in endJ) {
+            // 运动函数计算每步移动距离
             var step = Tween[tween](index, startJ[key], changeJ[key], count);
-            console.log(index, startJ[key], changeJ[key], count);
-            console.log(step);
             // 判断是否是opacity
             if(key == 'opacity'){
                 el.style[key] = step;
@@ -131,17 +132,14 @@ function selDot(elDot, index){
     addClass(elDots[index], 'sel');
 }
 
-function toRight(elBanner, index){
-    motion(elBanner,{marginLeft: index * bannerWidth}, function(){
-        if(index == bannerNum){
-            index = 0;
-            elBanner.style.width = 0;
-        }else if(index == 0){
-            index = bannerNum -1;
-            elBanner.style.width = bannerWidth * index;
+// 控制banner移动
+function bannerMove(elBanner, index){
+    motion(elBanner,{marginLeft: index * -bannerWidth}, function(){
+        if(index >= bannerNum){
+            elBanner.style.marginLeft = 0;
         }
-    })
-}
+    },1000,5,'QuadEaseIn');
+};
 
 var elBanner = document.getElementsByClassName('banner')[0];
 var elDot = document.getElementsByClassName('dot')[0];
@@ -169,8 +167,29 @@ for(var i = 0; i < bannerNum; i++){
         elDots[i].onclick = function(){
             index = i;
             selDot(elDot, index);
-            toRight(elBanner, index);
+            bannerMove(elBanner, index);
         }
     })(i);
 }
 
+// 左按钮事件
+elBtns[0].onclick = function(){
+    if(index == 0){
+        index = bannerNum;
+        elBanner.style.marginLeft = -bannerWidth * bannerNum + 'px';
+    }
+    index--;
+    bannerMove(elBanner, index);
+    selDot(elDot, index);
+}
+
+// 右按钮事件
+elBtns[1].onclick = function(){
+    index++;
+    bannerMove(elBanner, index);
+    if(index >= bannerNum){
+        index = 0;
+    }
+    selDot(elDot, index);
+    
+}
