@@ -70,7 +70,7 @@ function toggleClass(el, className){
     el: 元素
     className: 要添加的类名string类型
  */
-function motion(el, styleJson, callBack, time = 1000, timeout = 10, tween = 'Linear'){
+function motion(el, styleJson, callBack, time = 1000, timeout = 5, tween = 'Linear'){
     // 清除Interval,防止重复执行
     clearInterval(el.timer);
     
@@ -138,7 +138,7 @@ function bannerMove(elBanner, index){
         if(index >= bannerNum){
             elBanner.style.marginLeft = 0;
         }
-    },1000,5,'QuadEaseIn');
+    },200,1,'BounceEaseInOut');
 };
 
 var elBanner = document.getElementsByClassName('banner')[0];
