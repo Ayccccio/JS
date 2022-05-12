@@ -27,8 +27,9 @@ var elOpenDiv = elMenuSpan[0].parentElement;    //记录初始展开div
 for(var i = 0; i < elMenuSpan.length; i++){
     elMenuSpan[i].onclick = function(){
         toggleMenu(this.parentElement);
-        console.log(this.parentElement !== elOpenDiv && hasClass(this.parentElement,'collapsed'));
-        if(this.parentElement !== elOpenDiv && hasClass(this.parentElement,'collapsed')){
+
+        // 上一个展开的元素切换闭合
+        if(this.parentElement != elOpenDiv && !hasClass(elOpenDiv, 'collapsed')){
             toggleMenu(elOpenDiv);
         }
         elOpenDiv = this.parentElement;
