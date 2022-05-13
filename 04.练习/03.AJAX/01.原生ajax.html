@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+    var elDiv = document.getElementsByTagName('div')[0];
+    var isSending = false;  //xhr请求标记
+    elDiv.onmouseenter = function(){
+        // 实例化xhr
+        var xhr = new XMLHttpRequest();
+        isSending && xhr.abort();   //如果前面请求未结束，则取消当前请求
+        isSending = true;
+        
+        xhr.timeout = 2000;     //超时设置，超时后自动取消请求
+        xhr.ontimeout = function(){     //网络超时回调
+            console.log('网络请求超时');
+        }
+        xhr.onerror = function(){
+            console.log('网络异常');
+        }
+
+        // 设置响应数据类型为JSON
+        xhr.responseType = 'json';
+        // 打开链接
+        xhr.open('post','http://127.0.0.1:80/');
+        // 发送请求
+        xhr.send();
+        // 监听状态改变事件
+        xhr.onreadystatechange = function(){
+            // 判断xhr状态与xhr响应状态
+            if(xhr.readyState == 4 && xhr.status >= 200 && xhr.status < 300){
+                // 处理响应数据
+                elDiv.innerHTML = xhr.response.name;
+
+                // 请求结束，请求标记设为false
+                isSending = false;
+            }
+        }
+    }
+
+    elDiv.onmouseleave = function(){
+        this.innerHTML = '';
+    }
+</script>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>get<br></div>
+    <div>post<br></div>
+    <div>axios<br></div>
+</body>
+<script>
+    // 设置默认url地址，在请求时地址会自动加上
+    axios.defaults.baseURL = 'http://127.0.0.1:80'
+
+    var elDivs = document.querySelectorAll('div');
+
+    elDivs[0].onmouseenter = function () {
+        // get，参数1：地址，参数2：配置，url参数
+        axios.get('/', {
+            // 参数
+            params: {
+                id: 1,
+                name: 'asd'
+            },
+            // 请求头
+            headers: {
+                a: 1,
+                b: 2
+            },
+        }).then(function (response) {     //处理响应成功情况
+            console.log(response)
+            elDivs[0].innerHTML += response.data.name;
+        })
+    }
+
+    elDivs[1].onmouseenter = function () {
+        // 设置默认url地址，在请求时地址会自动加上
+        axios.defaults.baseURL = 'http://127.0.0.1:80'
+        // get，参数1：地址，参数2：请求体，参数3：配置
+        axios.post('/', {
+            // 请求体
+            params: {
+                id: 1,
+                name: 'asd'
+            }
+        },
+        {
+            // 配置
+            headers: {
+                a: 1,
+                b: 2
+            },
+        }).then(function (response) {
+            console.log(response)
+            elDivs[1].innerHTML += response.data.name;
+        })
+    }
+
+    elDivs[2].onmouseenter = function () {
+        // 设置默认url地址，在请求时地址会自动加上
+        axios.defaults.baseURL = 'http://127.0.0.1:80'
+        // get，参数1：地址，参数2：请求体，参数3：配置
+       axios({
+           method: 'post',
+           url: '/',
+           data: {
+               username: 'abc',
+               password: '123'
+           }
+        //    ,headers: {
+        //        a: 1,
+        //        b:2
+        //    }
+       }).then(function(response){
+            elDivs[2].innerHTML += response.data.name;
+       })
+    }
+</script>
+
+</html>
