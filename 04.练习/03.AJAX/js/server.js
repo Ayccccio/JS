@@ -6,7 +6,7 @@ app.all('/',(req, res)=>{
     res.setHeader('Access-Control-Allow-Origin','*')
     res.setHeader('Access-Control-Allow-Headers','*')
     const data = {name:'ay'};
-    res.send(JSON.stringify(data))
+    res.send(`handle(${JSON.stringify(data)})`)
 })
 
 app.listen(prot, ()=>{

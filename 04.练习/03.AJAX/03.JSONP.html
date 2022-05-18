@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+    // JSONP原理主要是利用HTML自带标签跨域访问资源的特性来进行跨域请求
+
+    // 实现
+    // 定义一个方法，服务器返回该方法的调用，利用script标签请求资源后解析执行js代码特性执行该方法
+    function handle(data){
+        var elDiv = document.getElementsByTagName('div')[0];
+        console.log(data)
+        elDiv.innerHTML = data.name;
+    }
+
+    // 创建script标签，插入到body中
+    var elScript = document.createElement('script');
+    elScript.src = 'http://127.0.0.1';          //跨域服务器地址
+    document.body.appendChild(elScript);        //只创建不会请求资源，插入才会请求资源
+
+</script>
+</html>

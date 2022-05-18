@@ -27,6 +27,7 @@
 
     var elDivs = document.querySelectorAll('div');
 
+    // get请求方式
     elDivs[0].onmouseenter = function () {
         // get，参数1：地址，参数2：配置，url参数
         axios.get('/', {
@@ -46,10 +47,11 @@
         })
     }
 
+    // post请求方式
     elDivs[1].onmouseenter = function () {
         // 设置默认url地址，在请求时地址会自动加上
         axios.defaults.baseURL = 'http://127.0.0.1:80'
-        // get，参数1：地址，参数2：请求体，参数3：配置
+        // post，参数1：地址，参数2：请求体，参数3：配置
         axios.post('/', {
             // 请求体
             params: {
@@ -69,6 +71,7 @@
         })
     }
 
+    // axios请求方式
     elDivs[2].onmouseenter = function () {
         // 设置默认url地址，在请求时地址会自动加上
         axios.defaults.baseURL = 'http://127.0.0.1:80'
