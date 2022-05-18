@@ -33,11 +33,11 @@
 
     // 创建生成器
     function *generator(){
-        let userData = yield getUser();     //分段代码
+        let userData = yield getUser();     //第一段代码
         console.log(userData);
-        let orderData = yield getOrder();
+        let orderData = yield getOrder();   //第二段代码
         console.log(orderData);
-        let goodsData = yield getGoods();
+        let goodsData = yield getGoods();   //第三段代码
         console.log(goodsData);
     }
 
