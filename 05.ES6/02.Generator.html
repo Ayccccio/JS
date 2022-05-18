@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function getUser(){
+        setTimeout(()=>{
+            let data = '用户数据';
+            console.log(gen.next());     //控制生成器执行第二段代码
+        },1000)
+    }
+    
+    function getOrder(){
+        setTimeout(()=>{
+            let data = '订单数据';
+            console.log(gen.next());    //控制生成器执行第三段代码
+        },1000)
+    }
+    
+    function getGoods(){
+        setTimeout(()=>{
+            let data = '商品数据';
+            console.log(gen.next());     //控制生成器执行第四段代码
+        },1000)
+    }
+
+    // 创建生成器
+    function *generator(){
+        let userData = yield getUser();     //分段代码
+        console.log(userData);
+        let orderData = yield getOrder();
+        console.log(orderData);
+        let goodsData = yield getGoods();
+        console.log(goodsData);
+    }
+
+    // 执行生成器，返回一个迭代器
+    let gen = generator();
+    console.log(gen.next());   //控制生成器执行第一段代码
+</script>
+</html>
