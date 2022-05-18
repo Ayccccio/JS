@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //自定义迭代器，实现对象的自定义遍历
+    let obj = {
+        name: "liu",
+        class: [
+            '1',
+            '2',
+            '3',
+            '久'
+        ],
+        [Symbol.iterator](){    //遍历class属性中所有的值
+            let index = 0;      //迭代器索引
+            let result = {};    //返回结果
+            // 迭代器必需返回一个对象
+            return {
+                // 对象中必需包含next方法
+                next:() =>{
+                    // 方法中必需返回一个对象，对象中包含value和done。value为当前遍历的值，done记录遍历是否结束，true表示结束
+                    if(index < this.class.length){
+                        result.value = this.class[index];
+                        result.done = false;
+                    }else{          //遍历结束
+                        result.value = undefined;
+                        result.done = true;
+                    }
+                    index++;
+                    return result;
+                }
+            }
+        }
+    }
+
+    // forin遍历的不是class里面值，而是obj的属性
+    for(var k of obj){
+        console.log(k)
+    }
+</script>
+</html>
