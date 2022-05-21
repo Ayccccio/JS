@@ -14,9 +14,18 @@
     function Person(name,age){  //构造函数
         this.name = name;
         this.age = age;
+        
     }
     Person.sex = 1;     //声明静态属性，静态属性只属于类,实例对象没有该属性
-    console.log(new Person('张三',18))
+    Person.say = function(){
+            console.log('Person');
+        }
+    let p = new Person('张三',18)
+    console.log(p)      
+    console.log(p.name)      
+    console.log(Person.sex)     //1
+    Person.say();               //Person
+    // p.say();                 //报错 is not a function
 
     // ES6 class语法
     class Person1{
@@ -25,7 +34,29 @@
             this.name = name;
             this.age = age;
         }
+        say(){
+            console.log('Person1')
+        }
     }
-    console.log(new Person1('李四',10))
+    let p1 = new Person1('李四',10)
+    console.log('---------------person1---------------')
+    console.log(p1)
+    console.log(p1.name)
+    console.log(Person1.sex)    //1
+    console.log(p1.sex)         //undefined
+    p1.say()                    //Person1
+    
+    class Person2 extends Person1{      //继承Person1的属性和方法
+        constructor(name, age, sex){
+            super(name, age)    
+            this.sex = sex;
+        }
+    }
+    let p2 = new Person2('王五',11, '男')
+    console.log('---------------person2---------------')
+    console.log(p2)
+    console.log(p2.name)
+    console.log(p2.sex)     //男
+    p2.say()                //Person1
 </script>
 </html>
