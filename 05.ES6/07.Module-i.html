@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        //通用形式，生成模块对象
+        import * as m from './07.Module-p.js'       
+        console.log(m.name)         //jax
+        console.log(m.age)          //18
+        console.log(m.sex)          //男
+        console.log(m.id)           //undefined
+        console.log(m.default.id)   //1
+        m.say()
+
+        // 解构赋值形式
+        import {name,age,default as m1} from './07.Module-p.js'
+        console.log(name,age,m1.id)     //jax 18 1
+
+        // 简便形式，针对默认暴露
+        import  m2 from './07.Module-p.js'
+        console.log(m2.name)    //undefined
+        console.log(m2.id)      //1
+
+
+    </script>
+</body>
+</html>
