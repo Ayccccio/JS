@@ -8,8 +8,8 @@
 </head>
 <body>
     <script type="module">
-        //通用形式，生成模块对象
-        import * as m from './07.Module-p.js'       
+        //通用形式，导入模块文件生成模块对象
+        import * as m from './07.Module-p.js'
         console.log(m.name)         //jax
         console.log(m.age)          //18
         console.log(m.sex)          //男
@@ -17,16 +17,14 @@
         console.log(m.default.id)   //1
         m.say()
 
-        // 解构赋值形式
+        // 解构赋值形式，导入模块文件
         import {name,age,default as m1} from './07.Module-p.js'
         console.log(name,age,m1.id)     //jax 18 1
 
-        // 简便形式，针对默认暴露
+        // 简便形式，导入模块文件，针对默认暴露
         import  m2 from './07.Module-p.js'
         console.log(m2.name)    //undefined
         console.log(m2.id)      //1
-
-
     </script>
 </body>
 </html>
