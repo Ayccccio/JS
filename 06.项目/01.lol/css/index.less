@@ -44,6 +44,13 @@ i{font-style: normal;}
 .show{
     display: block;
 }
+.hidden{
+    display: none;
+}
+@keyframes opacityin{
+    0%{opacity:0;}
+    100%{opacity:1;}
+}
 
 body{
     overflow-y: scroll;
@@ -147,6 +154,7 @@ body{
             }
             &:hover > .head-login{
                 display: block;
+                animation: opacityin .3s;
             }
         }
         .head-app{
@@ -162,6 +170,7 @@ body{
                 background: url('../images/topfoot-spr.png') no-repeat -303px -84px;
                 &:hover + .app-download{
                     display: block;
+                    animation: opacityin .3s;
                 }
             }
             .app-download{
@@ -219,6 +228,10 @@ body{
         right: 0;
         height: @head-height;
         background-color: #000;
+        &.show{
+            .show();
+            animation: opacityin .3s;
+        }
         .head-search-content{
             width: @content-width;
             margin: auto;
@@ -262,9 +275,6 @@ body{
 // 广告
 .comm-topact{
     position: relative;
-    .small{
-        display: none;
-    }
     img{
         width: 1920px;
         margin-left: 50%;
@@ -308,6 +318,15 @@ body{
                 font-size: 12px;
                 background-color: rgba(0, 0, 0, 0.65);
             }
+        }
+    }
+    .info-small{
+        .info();
+        .btn-detail{
+            top: 288px;
+        }
+        .version{
+            top: 306px;
         }
     }
 }

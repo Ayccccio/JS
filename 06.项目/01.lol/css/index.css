@@ -53,6 +53,17 @@ i {
 .show {
   display: block;
 }
+.hidden {
+  display: none;
+}
+@keyframes opacityin {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 body {
   overflow-y: scroll;
   background-color: #eee;
@@ -150,6 +161,7 @@ body {
 }
 .head-wrap .head .head-userinfo:hover > .head-login {
   display: block;
+  animation: opacityin 0.3s;
 }
 .head-wrap .head .head-app {
   position: relative;
@@ -166,6 +178,7 @@ body {
 }
 .head-wrap .head .head-app .head-app-icon:hover + .app-download {
   display: block;
+  animation: opacityin 0.3s;
 }
 .head-wrap .head .head-app .app-download {
   display: none;
@@ -221,6 +234,10 @@ body {
   height: 78px;
   background-color: #000;
 }
+.head-wrap .head-search-frame.show {
+  display: block;
+  animation: opacityin 0.3s;
+}
 .head-wrap .head-search-frame .head-search-content {
   width: 1358px;
   margin: auto;
@@ -270,9 +287,6 @@ body {
 .comm-topact {
   position: relative;
 }
-.comm-topact .small {
-  display: none;
-}
 .comm-topact img {
   width: 1920px;
   margin-left: 50%;
@@ -317,4 +331,50 @@ body {
   border-image-slice: 1;
   font-size: 12px;
   background-color: rgba(0, 0, 0, 0.65);
+}
+.comm-topact .info-small {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 1358px;
+}
+.comm-topact .info-small .btn-detail {
+  position: absolute;
+  top: 589px;
+  left: 0;
+  right: 0;
+  width: 160px;
+  height: 40px;
+  margin: auto;
+  color: #0000EE;
+  background: url('../images/topfoot-spr.png') no-repeat -216px -39px;
+}
+.comm-topact .info-small .version {
+  position: absolute;
+  top: 666px;
+  right: 0;
+  font-size: 14px;
+  color: #F5D185;
+}
+.comm-topact .info-small .version span {
+  color: #888787;
+}
+.comm-topact .info-small .version .detail {
+  display: inline-block;
+  width: 48px;
+  line-height: 22px;
+  padding: 0 15px;
+  border: 2px solid #f5d185;
+  border-image-source: linear-gradient(#6b5024 0px, #b88d35 100%);
+  border-image-slice: 1;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+.comm-topact .info-small .btn-detail {
+  top: 288px;
+}
+.comm-topact .info-small .version {
+  top: 306px;
 }
