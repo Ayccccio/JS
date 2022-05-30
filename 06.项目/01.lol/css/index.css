@@ -409,7 +409,7 @@ body {
   text-align: center;
   border-bottom: 2px solid transparent;
 }
-.content .part1 .banner-wrap .banner-title li:hover {
+.content .part1 .banner-wrap .banner-title .sel {
   color: #db6;
   background-color: #f7f6f6;
   border-bottom-color: #db6;
