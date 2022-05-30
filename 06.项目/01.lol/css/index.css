@@ -33,6 +33,8 @@ i {
 .clearfix::before,
 .clearfix::after,
 .fl-child::before,
+.fl-child::after,
+.fr-child::before,
 .fr-child::after {
   content: '';
   display: table;
@@ -176,10 +178,6 @@ body {
   height: 24px;
   background: url('../images/topfoot-spr.png') no-repeat -303px -84px;
 }
-.head-wrap .head .head-app .head-app-icon:hover + .app-download {
-  display: block;
-  animation: opacityin 0.3s;
-}
 .head-wrap .head .head-app .app-download {
   display: none;
   position: absolute;
@@ -210,6 +208,10 @@ body {
   position: absolute;
   bottom: -5px;
   right: -8px;
+}
+.head-wrap .head .head-app:hover .app-download {
+  display: block;
+  animation: opacityin 0.3s;
 }
 .head-wrap .head .head-search {
   width: 40px;
@@ -377,4 +379,38 @@ body {
 }
 .comm-topact .info-small .version {
   top: 306px;
+}
+.content {
+  padding-top: 40px;
+}
+.content .part1 {
+  width: 1358px;
+  margin: 0 auto;
+}
+.content .part1 .banner-wrap .banner-window {
+  width: 820px;
+  overflow: hidden;
+}
+.content .part1 .banner-wrap .banner-window .banner {
+  width: 4100px;
+}
+.content .part1 .banner-wrap .banner-window .banner img {
+  width: 820px;
+}
+.content .part1 .banner-wrap .banner-title {
+  display: flex;
+  color: #424242;
+  font-size: 14px;
+  background-color: #e3e2e2;
+  line-height: 38px;
+}
+.content .part1 .banner-wrap .banner-title li {
+  flex-grow: 1;
+  text-align: center;
+  border-bottom: 2px solid transparent;
+}
+.content .part1 .banner-wrap .banner-title li:hover {
+  color: #db6;
+  background-color: #f7f6f6;
+  border-bottom-color: #db6;
 }

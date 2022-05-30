@@ -24,6 +24,8 @@ i{font-style: normal;}
 .clearfix::before,
 .clearfix::after,
 .fl-child::before,
+.fl-child::after,
+.fr-child::before,
 .fr-child::after{
     content: '';
     display: table;
@@ -63,6 +65,7 @@ body{
 @head-login-width: 310px;       //头部登陆宽度
 @head-app-width: 40px;      //头部app图标容器宽度
 @head-app-download-width: 211px;    //头部app下载容器宽度
+@part1-left-width: 820px;           //分页1左边元素宽度
 // 头部
 .head-wrap{
     position: absolute;
@@ -168,10 +171,6 @@ body{
                 width: 16px;
                 height: 24px;
                 background: url('../images/topfoot-spr.png') no-repeat -303px -84px;
-                &:hover + .app-download{
-                    display: block;
-                    animation: opacityin .3s;
-                }
             }
             .app-download{
                 display: none;
@@ -203,6 +202,10 @@ body{
                     bottom: -5px;
                     right: -8px;
                 }
+            }
+            &:hover .app-download{
+                display: block;
+                animation: opacityin .3s;
             }
         }
         .head-search{
@@ -330,3 +333,46 @@ body{
         }
     }
 }
+
+// 内容区
+.content{
+    padding-top: 40px;
+    .part1{
+        .w1358();
+        // banner
+        .banner-wrap{
+            .banner-window{
+                width: @part1-left-width;
+                overflow: hidden;
+                .banner{
+                    width: @part1-left-width * 5;
+                    img{
+                        width: @part1-left-width;
+                    }
+                }
+            }
+            .banner-title{
+                display: flex;
+                color: #424242;
+                font-size: 14px;
+                background-color: #e3e2e2;
+                line-height: 38px;
+                li{
+                    flex-grow: 1;
+                    text-align: center;
+                    border-bottom: 2px solid transparent;
+                    &:hover{
+                        color: #db6;
+                        background-color: #f7f6f6;
+                        border-bottom-color: #db6;
+                    }
+
+                }
+            }
+        }
+
+        // 
+
+    }
+}
+// eanner
