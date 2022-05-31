@@ -63,7 +63,7 @@ function hasClass(el, className){
  * @param {String} className 
  */
 function removeClass(el, className){
-    let reg = new RegExp('\\s'+className+'\\b');
+    let reg = new RegExp('(\\s*)\\s'+className+'\\b');
     if(reg.test(el.className)){
         el.className = el.className.replace(reg, '');
     }
@@ -75,11 +75,11 @@ function removeClass(el, className){
  * @param {String} className 
  */
 function toggleClass(el, className){
-    let reg = new RegExp('\\s'+className+'\\b');
+    let reg = new RegExp('(\\s*)\\b'+className+'\\b');    
     if(reg.test(el.className)){
         el.className = el.className.replace(reg, '');
     }else{
-        el.className += ' ' + className;
+        el.className += ' ' + className
     }
 }
 

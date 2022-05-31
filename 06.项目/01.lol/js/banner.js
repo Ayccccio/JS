@@ -3,8 +3,8 @@ import { motion, toggleClass } from "./tools.js";
 // banner按钮切换
 function toggleBtn(){
     toggleClass(oldBtn,'sel')
-    toggleClass(elBannerTitles[index],'sel')
-    oldBtn = elBannerTitles[index]
+    toggleClass(elBannerTitles[index % (elBannerTitles.length)],'sel')
+    oldBtn = elBannerTitles[index % (elBannerTitles.length )]
 }
 
 // banner
@@ -28,5 +28,5 @@ setInterval(()=>{
             elBanner.style.marginLeft = 0;
             index=0;
         }
-    },200,1)
-},2800)
+    },100,1)
+},2000)
