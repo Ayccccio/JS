@@ -1,100 +1,186 @@
 // 重置样式
-body, ul, p, input, h2{
+body,
+ul,
+p,
+input,
+h2 {
     margin: 0;
     padding: 0;
 }
 
-ul{list-style-type: none;}
-a{text-decoration: none; color: inherit;}
-img,a{vertical-align: middle;}
-input{outline: none; border: none;}
-i{font-style: normal;}
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img,
+a {
+    vertical-align: middle;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+i {
+    font-style: normal;
+}
 
 // 工具样式
-.b{
+.b {
     background-color: rgba(0, 0, 0, .5);
 }
 
 
 // 公共样式
-.w1358{
+.w1358 {
     width: @content-width;
     margin: 0 auto;
 }
+
 .clearfix::before,
 .clearfix::after,
 .fl-child::before,
 .fl-child::after,
 .fr-child::before,
-.fr-child::after{
+.fr-child::after {
     content: '';
     display: table;
     clear: both;
 }
-.fl{
+
+.fl {
     float: left;
 }
-.fr{
+
+.fr {
     float: right;
 }
-.fl-child>*{
+
+.fl-child>* {
     .fl();
 }
-.fr-child>*{
+
+.fr-child>* {
     .fr();
 }
-.show{
+
+.show {
     display: block;
 }
-.hidden{
-    display: none;
-}
-@keyframes opacityin{
-    0%{opacity:0;}
-    100%{opacity:1;}
+
+.title-sel {
+    font-weight: bold;
+    color: #1da6ba;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 100%;
+        height: 7px;
+        background: url('../images/news-bottom.png') center center;
+    }
 }
 
-body{
+.hidden {
+    display: none;
+}
+
+@keyframes opacityin {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes opacityin {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes arrowanim {
+    0%,
+    100%,
+    54% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0)
+    }
+    18%,
+    36% {
+        -webkit-transform: translateX(4px);
+        transform: translateX(4px)
+    }
+    27% {
+        -webkit-transform: translateX(1px);
+        transform: translateX(1px)
+    }
+}
+
+body {
     overflow-y: scroll;
     background-color: #eee;
 }
+
 // 头部样式
-@content-width: 1358px;    //头部内容宽度
-@head-height: 78px;     //头部高度
-@head-userinfo-width: 244px;  //头部用户信息宽度
-@head-login-width: 310px;       //头部登陆宽度
-@head-app-width: 40px;      //头部app图标容器宽度
-@head-app-download-width: 211px;    //头部app下载容器宽度
-@part1-left-width: 820px;           //分页1左边元素宽度
-@part1-right-width: 496px;          //分页1右边元素宽度
+@content-width: 1358px; //头部内容宽度
+@head-height: 78px; //头部高度
+@head-userinfo-width: 244px; //头部用户信息宽度
+@head-login-width: 310px; //头部登陆宽度
+@head-app-width: 40px; //头部app图标容器宽度
+@head-app-download-width: 211px; //头部app下载容器宽度
+@part1-left-width: 820px; //分页1左边元素宽度
+@part1-right-width: 496px; //分页1右边元素宽度
+
 // 头部
-.head-wrap{
+.head-wrap {
     position: absolute;
     z-index: 2;
     width: 100%;
-    .head{
+
+    .head {
         height: @head-height;
-        .head-logo{
+
+        .head-logo {
             display: block;
             margin-top: 10px;
         }
 
-        .head-nav{
+        .head-nav {
             width: 55%;
             padding-top: 16px;
-            li{
+
+            li {
                 width: 20%;
-                a{
+
+                a {
                     display: block;
-                    span{
+
+                    span {
                         display: block;
                         text-align: center;
                     }
-                    span:first-child{
+
+                    span:first-child {
                         color: #fff;
                         font-size: 18px;
                     }
-                    span:last-child{
+
+                    span:last-child {
                         color: #AEAEAE;
                         font-size: 12px;
                     }
@@ -102,34 +188,39 @@ body{
             }
         }
 
-        .head-userinfo{
+        .head-userinfo {
             position: relative;
             width: @head-userinfo-width;
-            .portrait{
+
+            .portrait {
                 margin-top: 14px;
                 width: 48px;
                 height: 48px;
                 background: url('../images/topfoot-spr.png') no-repeat -216px -117px;
-                a{
+
+                a {
                     display: block;
                     width: 100%;
                     height: 100%;
                     line-height: 48px;
                     text-align: center;
                     font-size: 0;
-                    img{
+
+                    img {
                         width: 36px;
                         border-radius: 50%;
                     }
                 }
             }
-            .hint{
+
+            .hint {
                 margin-left: 6px;
                 line-height: @head-height;
                 font-size: 16px;
                 color: #fefefe;
             }
-            .head-login{
+
+            .head-login {
                 display: none;
                 z-index: -1;
                 position: absolute;
@@ -140,15 +231,21 @@ body{
                 font-size: 12px;
                 color: #848383;
                 text-align: center;
-                p{padding: 0 24px;}
-                p:first-of-type{
+
+                p {
+                    padding: 0 24px;
+                }
+
+                p:first-of-type {
                     margin-top: 30px;
                     padding-top: 14px;
                 }
-                p:last-of-type{
+
+                p:last-of-type {
                     padding-top: 14px;
                 }
-                div{
+
+                div {
                     margin-top: 20px;
                     line-height: 44px;
                     font-size: 16px;
@@ -156,24 +253,28 @@ body{
                     background-color: #000;
                 }
             }
-            &:hover > .head-login{
+
+            &:hover>.head-login {
                 display: block;
                 animation: opacityin .3s;
             }
         }
-        .head-app{
+
+        .head-app {
             position: relative;
             width: @head-app-width;
             padding-right: 31px;
             line-height: @head-height;
             text-align: center;
-            .head-app-icon{
+
+            .head-app-icon {
                 display: inline-block;
                 width: 16px;
                 height: 24px;
                 background: url('../images/topfoot-spr.png') no-repeat -303px -84px;
             }
-            .app-download{
+
+            .app-download {
                 display: none;
                 position: absolute;
                 top: @head-height;
@@ -181,7 +282,8 @@ body{
                 width: @head-app-download-width;
                 background: url('../images/topfoot-spr.png') no-repeat;
                 animation: all .3s;
-                .app-download-img{
+
+                .app-download-img {
                     width: 120px;
                     height: 120px;
                     border-radius: 5px;
@@ -189,33 +291,39 @@ body{
                     background-color: #fff;
                     text-align: center;
                     line-height: 120px;
-                    img{
+
+                    img {
                         width: 110px;
                     }
                 }
-                p{
+
+                p {
                     font-size: 12px;
                     line-height: 36px;
                     color: #cdbe91;
                 }
-                &>img{
+
+                &>img {
                     position: absolute;
                     bottom: -5px;
                     right: -8px;
                 }
             }
-            &:hover .app-download{
+
+            &:hover .app-download {
                 display: block;
                 animation: opacityin .3s;
             }
         }
-        .head-search{
+
+        .head-search {
             width: 40px;
             height: 40px;
             margin: 17px 14px 0 0;
             line-height: 40px;
             text-align: center;
-            i{
+
+            i {
                 display: inline-block;
                 width: 21px;
                 height: 21px;
@@ -224,7 +332,8 @@ body{
             }
         }
     }
-    .head-search-frame{
+
+    .head-search-frame {
         display: none;
         position: absolute;
         top: 0;
@@ -232,23 +341,28 @@ body{
         right: 0;
         height: @head-height;
         background-color: #000;
-        &.show{
+
+        &.show {
             .show();
             animation: opacityin .3s;
         }
-        .head-search-content{
+
+        .head-search-content {
             width: @content-width;
             margin: auto;
-            .icon{
+
+            .icon {
                 .head .head-search();
                 margin-right: 329px;
             }
-            .search-text{
+
+            .search-text {
                 width: 363px;
                 height: 40px;
                 margin: 19px 200px 0 0;
                 padding-left: 5px;
-                input{
+
+                input {
                     width: 100%;
                     height: 100%;
                     background-color: transparent;
@@ -256,13 +370,15 @@ body{
                     color: #fff;
                 }
             }
-            .close{
+
+            .close {
                 width: 40px;
                 height: 40px;
-                margin: 17px 6px 0 0 ;
+                margin: 17px 6px 0 0;
                 line-height: 40px;
                 text-align: center;
-                i{
+
+                i {
                     display: inline-block;
                     width: 18px;
                     height: 18px;
@@ -277,21 +393,24 @@ body{
 }
 
 // 广告
-.comm-topact{
+.comm-topact {
     position: relative;
-    img{
+
+    img {
         width: 1920px;
         margin-left: 50%;
         transform: translate(calc($width/-2));
     }
-    .info{
+
+    .info {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         margin: auto;
         width: @content-width;
-        .btn-detail{
+
+        .btn-detail {
             position: absolute;
             top: 589px;
             left: 0;
@@ -302,16 +421,19 @@ body{
             color: #0000EE;
             background: url('../images/topfoot-spr.png') no-repeat -216px -39px;
         }
-        .version{
+
+        .version {
             position: absolute;
             top: 666px;
             right: 0;
             font-size: 14px;
             color: #F5D185;
-            span{
+
+            span {
                 color: #888787;
             }
-            .detail{
+
+            .detail {
                 display: inline-block;
                 width: 48px;
                 line-height: 22px;
@@ -324,49 +446,59 @@ body{
             }
         }
     }
-    .info-small{
+
+    .info-small {
         .info();
-        .btn-detail{
+
+        .btn-detail {
             top: 288px;
         }
-        .version{
+
+        .version {
             top: 306px;
         }
     }
 }
 
+
 // 内容区
-.content{
+.content {
     padding-top: 40px;
-    .part1{
+
+    .part1 {
         display: flex;
         justify-content: space-between;
         .w1358();
-        
+
         // banner
-        .banner-wrap{
-            .banner-window{
+        .banner-wrap {
+            .banner-window {
                 width: @part1-left-width;
                 overflow: hidden;
-                .banner{
+
+                .banner {
                     width: @part1-left-width * 5;
-                    img{
+
+                    img {
                         width: @part1-left-width;
                     }
                 }
             }
-            .banner-title{
+
+            .banner-title {
                 display: flex;
                 color: #424242;
                 font-size: 14px;
                 background-color: #e3e2e2;
                 line-height: 38px;
-                li{
+
+                li {
                     flex-grow: 1;
                     text-align: center;
                     border-bottom: 2px solid transparent;
                 }
-                .sel{
+
+                .sel {
                     color: #db6;
                     background-color: #f7f6f6;
                     border-bottom-color: #db6;
@@ -375,47 +507,42 @@ body{
         }
 
         // news
-        .news{
+        .news {
             width: @part1-right-width;
-            .news-title{
+
+            .news-title {
                 display: flex;
-                justify-content:space-between ;
+                justify-content: space-between;
                 color: #676767;
                 font-size: 18px;
                 line-height: 37px;
-                border-bottom: 1px solid #e0e2e2 ;
-                li{
+                border-bottom: 1px solid #e0e2e2;
+
+                li {
                     position: relative;
                     width: 40px;
-                    &.sel{
-                        font-weight: bold;
-                        color: #1da6ba;
-                        &::after{
-                            content: '';
-                            position: absolute;
-                            bottom: -3px;
-                            left: 0;
-                            width: 100%;
-                            height: 7px;
-                            background: url('../images/news-bottom.png') center center;
-                        }
+
+                    &.sel {
+                        .title-sel();
                     }
                 }
             }
 
-            .news-content{
-                h2{
+            .news-content {
+                h2 {
                     color: #0da0b4;
                     font-size: 22px;
                     text-align: center;
                     line-height: 59px;
                     background: url('../images/index-spr.png') no-repeat 0 -460px;
                 }
-                .news-items{
-                    li{
-                        border-top: 1px solid #e0e2e2 ;
+
+                .news-items {
+                    li {
+                        border-top: 1px solid #e0e2e2;
                         line-height: 39px;
-                        i{
+                        height: 39px;
+                        i {
                             display: inline-block;
                             width: 36px;
                             line-height: 20px;
@@ -425,23 +552,48 @@ body{
                             border: 1px #c5ab86 solid;
                             vertical-align: middle;
                         }
-                        a{
+
+                        a {
                             margin-left: 20px;
                             font-size: 14px;
                             letter-spacing: .2px;
-                            &:hover{
+
+                            &:hover {
                                 color: #bb9a6c;
                             }
                         }
-                        span{
+
+                        span {
                             float: right;
                             color: #9d9d9d;
                             font-size: 14px;
                         }
                     }
                 }
+
+                .more {
+                    line-height: 40px;
+                    color: #676767;
+                    font-size: 14px;
+                    text-align: center;
+                    background-color: #DAD8D8;
+
+                    span {
+                        color: #7EA1A6;
+                    }
+
+                    i {
+                        display: inline-block;
+                        width: 15px;
+                        height: 9px;
+                        background: url('../images/comm-spr.png') no-repeat -213px -126px;
+                    }
+
+                    &:hover i {
+                        animation: arrowanim 1.5s linear infinite;
+                    }
+                }
             }
         }
-
     }
 }
