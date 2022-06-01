@@ -2,7 +2,8 @@ body,
 ul,
 p,
 input,
-h2 {
+h2,
+h3 {
   margin: 0;
   padding: 0;
 }
@@ -425,6 +426,7 @@ body {
 .content .part1 {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   width: 1358px;
   margin: 0 auto;
 }
@@ -536,4 +538,22 @@ body {
 }
 .content .part1 .news .news-content .more:hover i {
   animation: arrowanim 1.5s linear infinite;
+}
+.content .part1 .active {
+  width: 820px;
+  margin-top: 50px;
+}
+.content .part1 .active .active-title h3 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #0b0b0b;
+  vertical-align: top;
+}
+.content .part1 .active .active-title h3::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 28px;
+  margin-right: 10px;
+  background-color: #1da6ba;
 }
