@@ -88,6 +88,15 @@ i {
         background: url('../images/news-bottom.png') center center;
     }
 }
+.title-border{
+    border-bottom: 1px solid #e0e2e2;
+}
+.more-arrow{
+    display: inline-block;
+    width: 15px;
+    height: 9px;
+    background: url('../images/comm-spr.png') no-repeat -213px -126px;
+}
 
 .hidden {
     display: none;
@@ -517,8 +526,7 @@ body {
                 color: #676767;
                 font-size: 18px;
                 line-height: 37px;
-                border-bottom: 1px solid #e0e2e2;
-
+                .title-border();
                 li {
                     position: relative;
                     width: 40px;
@@ -584,10 +592,7 @@ body {
                     }
 
                     i {
-                        display: inline-block;
-                        width: 15px;
-                        height: 9px;
-                        background: url('../images/comm-spr.png') no-repeat -213px -126px;
+                        .more-arrow();
                     }
 
                     &:hover i {
@@ -602,22 +607,55 @@ body {
             width: @part1-left-width;
             margin-top: 50px;
             .active-title{
+                line-height: 38px;
                 h3{
+                    position: relative;
+                    width: 106px;
+                    height: 28px;
+                    margin-top: 7px;
+                    padding-left: 10px;
+                    line-height: 28px;
                     font-size: 24px;
                     font-weight: 400;
                     color: #0b0b0b;
                     vertical-align: top;
                     &::before{
                         content: '';
-                        display: inline-block;
+                        position: absolute;
+                        left: 0;
                         width: 4px;
                         height: 28px;
-                        margin-right: 10px;
                         background-color: #1da6ba;
                     }
                 }
-                ul{
+                .active-title-items{
+                    width: @part1-left-width - h3[$width];
+                    .title-border();
+                    ul{
+                        margin-left: 25px;
+                        float: left;
+                        li{
+                            position: relative;
+                            width: 68px;
+                            height: 37px;
+                            line-height: 37px;
+                            margin-right: 40px;
+                            &.sel{
+                                .title-sel();
+                            }
+                        }
+                    }
+                    &>a{
+                        display: block;
+                        float: right;
+                        width: 44px;
+                        height: 35px;
+                        color: #7ea1a6;
+                        font-size: 12px;
+                        i{
 
+                        }
+                    }
                 }
             }
         }
