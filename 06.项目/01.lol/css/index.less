@@ -3,7 +3,7 @@ body,
 ul,
 p,
 input,
-h2,h3 {
+h2,h3, h4 {
     margin: 0;
     padding: 0;
 }
@@ -111,14 +111,12 @@ i {
         opacity: 1;
     }
 }
-
-@keyframes opacityin {
+@keyframes marginTop {
     0% {
-        opacity: 0;
+        margin-top: 0;
     }
-
     100% {
-        opacity: 1;
+        margin-top: 10px;
     }
 }
 
@@ -143,6 +141,7 @@ i {
 body {
     overflow-y: scroll;
     background-color: #eee;
+    height: 8000px;
 }
 
 // 头部样式
@@ -609,29 +608,27 @@ body {
             .active-title{
                 line-height: 38px;
                 h3{
-                    position: relative;
-                    width: 106px;
+                    width: 15%;
                     height: 28px;
                     margin-top: 7px;
-                    padding-left: 10px;
                     line-height: 28px;
                     font-size: 24px;
                     font-weight: 400;
                     color: #0b0b0b;
-                    vertical-align: top;
                     &::before{
                         content: '';
-                        position: absolute;
-                        left: 0;
+                        display: inline-block;
                         width: 4px;
                         height: 28px;
                         background-color: #1da6ba;
+                        vertical-align: top;
+                        margin-right: 10px;
                     }
                 }
                 .active-title-items{
-                    width: @part1-left-width - h3[$width];
-                    .title-border();
+                    width: 85%;
                     ul{
+                        .title-border();
                         margin-left: 25px;
                         float: left;
                         li{
@@ -653,9 +650,58 @@ body {
                         color: #7ea1a6;
                         font-size: 12px;
                         i{
-
+                            .more-arrow();
+                        }
+                        &:hover i{
+                            animation: arrowanim 1.5s infinite;
                         }
                     }
+                }
+            }
+
+            .active-items{
+                width: 193px;
+                margin-top: 21px;
+                li{
+                    position: absolute;
+                    margin-top: 0;
+                    .img{
+                        position: relative;
+                        width: 100%;
+                        .shade{
+                            position: absolute;
+                            top: 0;
+                            display: none;
+                            box-sizing: border-box;
+                            flex-direction: column;
+                            justify-content: center;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0,0,0,.5) url('../images/index-spr.png') 2px -249px;
+                            padding:0 5px;
+                            text-align: center;
+                            h4{
+                                margin-bottom: 2px;
+                                line-height: 24px;
+                                color: #cdbe91;
+                                font-size: #cdbe91;
+                                font-weight: 400px;
+                            }
+                            p{
+                                color: #9d9c9c;
+                                font-size: 12px;
+                            }
+                        }
+                    }
+                    &:hover {
+                        margin-top: -10px;
+                        animation: all .3s;
+                        .shade{
+                            display: flex;
+                            animation: opacityin .1s;
+                        }
+                    }
+
                 }
             }
         }
